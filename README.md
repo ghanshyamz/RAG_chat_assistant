@@ -77,8 +77,36 @@ The chatbot handles messages using a coordinated routing workflow. Instead of a 
 
 ### Prerequisites
 *   [Python 3.13+](https://www.python.org/downloads/)
-*   [Node.js 18+](https://nodejs.org/)
+*   [Node.js 18+](https://nodejs.org/) (includes `npm`)
+*   [uv](https://github.com/astral-sh/uv) (Fast Python package manager)
 *   [Google Gemini API Key](https://aistudio.google.com/)
+
+#### Installing uv
+`uv` is a high-performance Python package installer. You can install it using:
+*   **Windows (PowerShell):**
+    ```powershell
+    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+    ```
+*   **macOS / Linux:**
+    ```bash
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    ```
+*   **Using standard pip:**
+    ```bash
+    pip install uv
+    ```
+
+#### Installing npm
+`npm` is the default package manager for Node.js and is installed automatically when you install Node.js:
+*   **Windows / macOS:** Download and run the installer from the official [Node.js Downloads](https://nodejs.org/en/download/) page.
+*   **macOS (via Homebrew):**
+    ```bash
+    brew install node
+    ```
+*   **Linux (Debian/Ubuntu):**
+    ```bash
+    sudo apt update && sudo apt install nodejs npm -y
+    ```
 
 ### 1. Backend Setup
 
