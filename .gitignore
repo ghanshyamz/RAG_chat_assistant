@@ -55,3 +55,4 @@ yarn-error.log*
 
 # IDEs and Editors
 .vscode/
+backend/uploads
