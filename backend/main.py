@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from infrastructure.database import init_db
 from api.documents import router as documents_router
+from api.chat import router as chat_router
 
 # Ensure models are imported before creating tables
 import infrastructure.orm_models
@@ -36,6 +37,7 @@ app.add_middleware(
 
 # Include API routers
 app.include_router(documents_router)
+app.include_router(chat_router)
 
 @app.get("/")
 def root():

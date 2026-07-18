@@ -72,3 +72,22 @@ async def list_documents(
 ):
     documents = await document_store.list_documents()
     return {"documents": documents}
+
+@router.delete("/{document_id}")
+async def delete_document(
+    document_id: str,
+    document_store: DocumentStore = Depends(get_document_store),
+    vector_store: VectorStore = Depends(get_vector_store)
+):
+    # 1. Delete from Vector Store
+    try:
+        await vector_store.delete_document_chunks(document_id)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to delete vectors: {e}")
+
+    # 2. Delete from Document Store (Metadata & Chunks)
+    success = await document_store.delete_document(document_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Document not found or could not be deleted")
+
+    return {"message": f"Document {document_id} deleted successfully"}
